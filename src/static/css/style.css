@@ -33,3 +33,12 @@ html, body {
     height: 40px;
     object-fit: cover;
 }
+
+.ptop {
+    padding-top: 20px;
+}
+
+.pbot {
+    padding-bottom: 20px;
+}
+

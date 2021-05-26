@@ -12,12 +12,11 @@ function init_db()
         $dbname = $_ENV['DISCODING_DB_NAME'] ?? 'discoding';
         $charset = $_ENV['DISCODING_DB_CHARSET'] ?? 'utf8';
         $user = $_ENV['DISCODING_DB_USER'] ?? 'root';
-        $password = $_ENV['DISCODING_DB_PASSWORD'] ?? '';
+        $password = $_ENV['DISCODING_DB_PASSWORD'] ?? 'root';
 
         $db = new PDO("mysql:host=$host;dbname=$dbname;charset=$charset",
             $user,
-            $password,
-            [PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = 'Europe/Paris'"]);
+            $password);
 
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());

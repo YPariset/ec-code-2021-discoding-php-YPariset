@@ -21,6 +21,10 @@
                 <div class="mb-3">
                     <button type="submit" class="btn btn-primary btn-lg btn-block w-100">Login</button>
                 </div>
+
+                <div class="d-flex justify-content-center ptop">
+                    <a type="submit" class="btn btn-secondary" href='index.php?action=contact'>Contact us</a>
+                </div>
             </form>
         </div>
     </div>

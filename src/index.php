@@ -1,10 +1,16 @@
 <?php
 
+ini_set('display_errors','on');
+error_reporting(E_ALL);
+
 date_default_timezone_set('Europe/Paris');
 
 require_once('controller/conversationController.php');
 require_once('controller/friendController.php');
 require_once('controller/loginController.php');
+require_once( 'controller/contactController.php' );
+
+$user_id = isset( $_SESSION['user_id'] ) ? $_SESSION['user_id'] : false;
 
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
@@ -21,15 +27,24 @@ if (isset($_GET['action'])) {
             break;
 
         case 'conversation':
-            conversationPage();
-            break;
+            if(empty($user_id)): 
+                header('Location:index.php');
+              else: 
+                conversationPage();
+              endif;
 
         case 'friend':
-            friendPage();
+            if(empty($user_id)): 
+                header('Location:index.php');
+              else: 
+                friendPage();
+              endif;
+
+        case 'contact':
+            sendMail();
             break;
     }
 } else {
-    $user_id = $_SESSION['user_id'] ?? false;
 
     if ($user_id) {
         friendPage();
