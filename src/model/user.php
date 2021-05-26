@@ -101,14 +101,6 @@ class User
         $this->avatar_url = $avatar_url;
     }
 
-    //fonction de hachage password
-    public static function hash($password) {
-        $begin_password = substr($password, 3, strlen($password));
-        $end_password   = substr($password, 0,3);
-    
-        $salt = $begin_password.$password.$end_password;
-        return hash('sha256', $salt);
-      }
 
   /***********************************
   * -------- CREATE NEW USER ---------
@@ -118,6 +110,8 @@ class User
 
     // Open database connection
     $db   = init_db();
+    //Default avatar
+    $avatar = '/static/img/default-avatar.jpeg';
 
 
     // Check if email already exist
@@ -131,11 +125,12 @@ class User
         // Insert new user
         $req->closeCursor();
 
-        $req  = $db->prepare( "INSERT INTO users ( email, password, username ) VALUES ( :email, :password, :username )" );
+        $req  = $db->prepare( "INSERT INTO users ( email, password, username, avatar_url ) VALUES ( :email, :password, :username, :avatar )" );
         $req->execute( array(
         'email'     => $this->getEmail(),
-        'password'  => $this->hash($this->getPassword()),
+        'password'  => $this->getPassword(),
         'username'  => $this->getUsername(),
+        'avatar'    => $avatar
         ));
         return true;
     endif;

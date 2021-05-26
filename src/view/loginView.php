@@ -3,6 +3,9 @@
 <div class="container-fluid d-flex h-100 characterBackground">
     <div class="row align-self-center w-100">
         <div class="col-md-4 mx-auto auth-container">
+            <div class="align-self-center d-flex justify-content-end">
+                <a class="bi bi-question-circle-fill" data-toggle="tooltip" title="Copyright © created with love and passion by Parizoo"></a>
+            </div>
             <h3>Welcome back!
             </h3>
             <p class="text-muted">We're so excited to see you again!</p>

@@ -27,8 +27,8 @@ function signup($post) {
   $data                   = new stdClass();
   $data->email            = $post['email'];
   $data->username         = $post['username'];
-  $data->password         = isset($post['password']) ? htmlspecialchars(strip_tags($post['password'])) : null;
-  $password_confirm       = isset($post['password_confirm']) ? htmlspecialchars(strip_tags($post['password_confirm'])) : null;
+  $data->password         = hash('sha256', ($_POST['password']));
+  $password_confirm       = hash('sha256',($_POST['password_confirm']));
 
   $user = new User( $data );
   $error_msg = null;

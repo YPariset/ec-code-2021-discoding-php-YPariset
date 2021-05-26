@@ -10,6 +10,18 @@ class Conversation
     protected $interlocutor_username;
     protected $updated_at;
 
+    public function __construct( $conversation = null ) {
+
+        if( $conversation != null ):
+            $this->setId( isset( $conversation->id ) ? $conversation->id : null );
+            $this->setUserId( isset( $conversation->user_id) ? $conversation->user_id : null );
+            $this->setInterlocutorId( isset( $conversation->interlocutor_id) ? $conversation->interlocutor_id : null );
+            $this->setInterlocutorUsername( isset( $conversation->interlocutor_username) ? $conversation->interlocutor_username : null );
+            $thiis->setUpdatedAt(isset( $conversation->updated_at) ? $conversation->updated_at : null );
+          
+        endif;
+      }
+
     /**
      * @return mixed
      */
