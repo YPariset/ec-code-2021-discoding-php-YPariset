@@ -22,6 +22,11 @@
                     <button type="submit" class="btn btn-primary btn-lg btn-block w-100">Login</button>
                 </div>
 
+                <span class="d-flex justify-content-center space">
+                    Don't have an account ?  
+                    <a class="pleft" href="index.php?action=signup">Sign up</a>
+                </span>
+
                 <div class="d-flex justify-content-center ptop">
                     <a type="submit" class="btn btn-secondary" href='index.php?action=contact'>Contact us</a>
                 </div>

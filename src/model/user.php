@@ -10,6 +10,17 @@ class User
     protected $password;
     protected $avatar_url;
 
+    public function __construct( $user = null ) {
+
+        if( $user != null ):
+          $this->setId( isset( $user->id ) ? $user->id : null );
+          $this->setEmail( $user->email );
+          $this->setUsername( $user->username );
+          $this->setPassword( $user->password, isset( $user->password_confirm ) ? $user->password_confirm : null );
+          
+        endif;
+      }
+
     /**
      * @return mixed
      */
@@ -55,7 +66,7 @@ class User
      */
     public function setUsername($username)
     {
-        $this->username = $username;
+        $this->username = $username.'#'.rand(1000, 9999);
     }
 
     /**
@@ -89,6 +100,38 @@ class User
     {
         $this->avatar_url = $avatar_url;
     }
+
+
+    /***********************************
+  * -------- CREATE NEW USER ---------
+  ************************************/
+
+  public function createUser() {
+
+    // Open database connection
+    $db   = init_db();
+
+
+    // Check if email already exist
+    $req  = $db->prepare( "SELECT * FROM users WHERE email = ?" );
+    $req->execute( array( $this->getEmail() ) );
+
+    if( $req->rowCount() > 0 ) throw new Exception( "Email ou mot de passe incorrect" );
+
+    // Insert new user
+    $req->closeCursor();
+
+    $req  = $db->prepare( "INSERT INTO users ( email, password, username ) VALUES ( :email, :password, :username )" );
+    $req->execute( array(
+      'email'     => $this->getEmail(),
+      'password'  => $this->getPassword(),
+      'username'  => $this->getUsername(),
+    ));
+
+    // Close databse connection
+    $db = null;
+
+  }
 
 
     /**************************************

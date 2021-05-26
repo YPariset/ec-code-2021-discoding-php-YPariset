@@ -8,7 +8,8 @@ date_default_timezone_set('Europe/Paris');
 require_once('controller/conversationController.php');
 require_once('controller/friendController.php');
 require_once('controller/loginController.php');
-require_once( 'controller/contactController.php' );
+require_once('controller/contactController.php');
+require_once('controller/signupController.php');
 
 $user_id = isset( $_SESSION['user_id'] ) ? $_SESSION['user_id'] : false;
 
@@ -22,6 +23,14 @@ if (isset($_GET['action'])) {
             }
             break;
 
+        case 'signup':
+            if (!empty($_POST)) {
+                signup($_POST);
+            } else {
+                signupPage();
+                }
+            break;
+
         case 'logout':
             logout();
             break;
@@ -32,6 +41,7 @@ if (isset($_GET['action'])) {
               else: 
                 conversationPage();
               endif;
+            break;
 
         case 'friend':
             if(empty($user_id)): 
@@ -39,6 +49,7 @@ if (isset($_GET['action'])) {
               else: 
                 friendPage();
               endif;
+            break;
 
         case 'contact':
             sendMail();
