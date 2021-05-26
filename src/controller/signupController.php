@@ -39,7 +39,7 @@ function signup($post) {
     if( $user->getPassword() == $password_confirm){
         // si adresse dispo
         if($user->createUser()){
-          $error_msg ="You will receive an email to activate your account";
+          $success_msg ="You will receive an email to activate your account";
         }else{
 
           $error_msg ="This account already exist";

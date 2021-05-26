@@ -2,7 +2,7 @@
 
 <div class="container-fluid d-flex h-100 characterBackground">
     <div class="row align-self-center w-100">
-        <div class="col-4 mx-auto auth-container">
+        <div class="col-md-4 mx-auto auth-container">
         <div class="auth-container">
           <h2>Inscription <span class="emoji">🕺</span></h2>
           <p class="text-muted">Welcome to Discoding</p>
@@ -37,7 +37,12 @@
                 </div>
               </div>
             </div>
-            <span class="error-msg"><?= isset( $error_msg ) ? $error_msg : null; ?></span>
+            <span class="error-msg alert-danger d-flex justify-content-center">
+              <?= isset( $error_msg ) ? $error_msg : null; ?>
+            </span>
+            <span class="success-msg alert-success d-flex justify-content-center">
+              <?= isset($success_msg) ? $success_msg : null; ?>
+            </span>
           </form>
         </div>
     </div>

@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-2 align-self-center d-flex justify-content-end">
                     <a href="/index.php?action=friend&sub_action=add_friend" class="btn btn-success">Add a Friend</a>
-                    </btn>
+                    <a class="bi bi-power logout" href="index.php?action=logout"></a>
                 </div>
             </div>
             <ul class="list-group list-group-flush mt-2">

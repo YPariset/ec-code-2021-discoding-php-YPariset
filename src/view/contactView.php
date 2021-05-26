@@ -4,7 +4,7 @@
 
 <div class="container-fluid d-flex h-100 characterBackground">
     <div class="row align-self-center w-100">
-        <div class="col-4 mx-auto auth-container">
+        <div class="col-md-4 mx-auto auth-container">
             <h3>Contact us</h3>
             <p class="text-muted">Drop us a message and we'll be glad to answer.</p>
             <form method="post" action="index.php?action=contact" class="custom-form">

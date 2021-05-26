@@ -11,6 +11,7 @@ html, body {
     align-items: center;
     flex-direction: column;
     background-color: #36393f;
+    
 
     border-radius: 10px 10px 10px 10px;
     position: relative;
@@ -49,6 +50,11 @@ html, body {
 span.emoji {
     font-size: 60px;
     
+}
+
+.logout {
+    font-size: 30px;
+    padding-left: 20px;
 }
 
   
