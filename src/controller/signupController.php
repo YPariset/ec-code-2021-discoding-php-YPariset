@@ -25,20 +25,30 @@ function signupPage() {
 
 function signup($post) {
   $data                   = new stdClass();
-  $data->email           = $post['email'];
-  $data->username           = $post['username'];
-  $data->password         = hash('sha256', ($_POST['password']));
-  $data->password_confirm = hash('sha256',($_POST['password_confirm']));
+  $data->email            = $post['email'];
+  $data->username         = $post['username'];
+  $data->password         = isset($post['password']) ? htmlspecialchars(strip_tags($post['password'])) : null;
+  $password_confirm       = isset($post['password_confirm']) ? htmlspecialchars(strip_tags($post['password_confirm'])) : null;
+
+  $user = new User( $data );
+  $error_msg = null;
 
   # Check if passwords are matching
-  try {
-      $user               = new User( $data );
-      $user->createUser();
+  if( $data->email != null || $data->password != null || $password_confirm != null|| $data->username != null){
+    // si le confirm est egal au password user 
+    if( $user->getPassword() == $password_confirm){
+        // si adresse dispo
+        if($user->createUser()){
+          $error_msg ="You will receive an email to activate your account";
+        }else{
 
-      header( 'location: index.php ');
-  }
-  catch (Exception $e) {
-      $error_msg = $e->getMessage();
+          $error_msg ="This account already exist";
+        }
+     }else{
+          $error_msg = "Password doesn't matching";
+     }
+  } else{
+      $error_msg ="Please, be focus !";
   }
 
   require('view/signupView.php');

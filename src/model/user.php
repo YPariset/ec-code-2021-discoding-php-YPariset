@@ -101,8 +101,16 @@ class User
         $this->avatar_url = $avatar_url;
     }
 
+    //fonction de hachage password
+    public static function hash($password) {
+        $begin_password = substr($password, 3, strlen($password));
+        $end_password   = substr($password, 0,3);
+    
+        $salt = $begin_password.$password.$end_password;
+        return hash('sha256', $salt);
+      }
 
-    /***********************************
+  /***********************************
   * -------- CREATE NEW USER ---------
   ************************************/
 
@@ -116,17 +124,21 @@ class User
     $req  = $db->prepare( "SELECT * FROM users WHERE email = ?" );
     $req->execute( array( $this->getEmail() ) );
 
-    if( $req->rowCount() > 0 ) throw new Exception( "Email ou mot de passe incorrect" );
+    
+    if( $req->rowCount() > 0 ) :
+        return false;
+      else : 
+        // Insert new user
+        $req->closeCursor();
 
-    // Insert new user
-    $req->closeCursor();
-
-    $req  = $db->prepare( "INSERT INTO users ( email, password, username ) VALUES ( :email, :password, :username )" );
-    $req->execute( array(
-      'email'     => $this->getEmail(),
-      'password'  => $this->getPassword(),
-      'username'  => $this->getUsername(),
-    ));
+        $req  = $db->prepare( "INSERT INTO users ( email, password, username ) VALUES ( :email, :password, :username )" );
+        $req->execute( array(
+        'email'     => $this->getEmail(),
+        'password'  => $this->hash($this->getPassword()),
+        'username'  => $this->getUsername(),
+        ));
+        return true;
+    endif;
 
     // Close databse connection
     $db = null;
