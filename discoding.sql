@@ -88,6 +88,51 @@ INSERT INTO `messages` (`id`, `conversation_id`, `user_id`, `content`, `created_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `servers`
+--
+
+CREATE TABLE `servers` (
+  `id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `user_id` int NOT NULL,
+  `created_at` datetime NOT NULL,
+  `avatar_url` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+--
+-- Dumping data for table `servers`
+--
+
+INSERT INTO `servers` (`id`, `name`, `user_id`, `created_at`, `avatar_url`) VALUES
+(1, 'Coding Factory', 1, '2021-05-26 12:50:09', 'https://i.pinimg.com/originals/92/57/8a/92578adbf3632f085bffdc00c0eccb47.jpg');
+
+-- --------------------------------------------------------
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `channels`
+--
+
+CREATE TABLE `channels` (
+  `id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+--
+-- Dumping data for table `channels`
+--
+
+INSERT INTO `channels` (`id`, `name`, `created_at`) VALUES
+(1, 'General', '2021-05-26 12:50:09'),
+(2, 'Random', '2021-05-26 12:50:09'),
+(3, 'Music', '2021-05-26 12:50:09'),
+(4, 'Games', '2021-05-26 12:50:09'),
+(5, 'Help', '2021-05-26 12:50:09');
+
+
+--
 -- Table structure for table `users`
 --
 
@@ -104,9 +149,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `avatar_url`) VALUES
-(1, 'coding@factory.fr', 'coding', '123456', 'https://media-exp1.licdn.com/dms/image/C560BAQFveTMznUt80w/company-logo_200_200/0/1606411224030?e=2159024400&v=beta&t=Q_n0Ieldw9WSqZs5sNwqS4cfTKRJW1nmud2xhjRrgZM'),
-(2, 'robin@factory.fr', 'robin', 'robin', 'https://i.pinimg.com/originals/92/57/8a/92578adbf3632f085bffdc00c0eccb47.jpg'),
-(3, 'bob@bob.com', 'bob', 'bob', NULL);
+(1, 'coding@factory.fr', 'coding#8136', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'https://media-exp1.licdn.com/dms/image/C560BAQFveTMznUt80w/company-logo_200_200/0/1606411224030?e=2159024400&v=beta&t=Q_n0Ieldw9WSqZs5sNwqS4cfTKRJW1nmud2xhjRrgZM'),
+(2, 'robin@factory.fr', 'robin#5562', '287782ef42356ef3d6551590f1ef0117b71d876df0f9b3eb58d088864770c74c', 'https://i.pinimg.com/originals/92/57/8a/92578adbf3632f085bffdc00c0eccb47.jpg'),
+(3, 'bob@bob.com', 'bob#3651', '81b637d8fcd2c6da6359e6963113a1170de795e4b725b84d1e0b4cfd9ec58ce9', 'https://cdn-europe1.lanmedia.fr/var/europe1/storage/images/europe1/culture/bob-marley-toujours-un-bon-vendeur-316346/6685272-1-fre-FR/Bob-Marley-toujours-un-bon-vendeur.jpg');
 
 --
 -- Indexes for dumped tables
@@ -135,6 +180,21 @@ ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_messages_to_conversation_id` (`conversation_id`),
   ADD KEY `fk_messages_to_user_id` (`user_id`);
+
+
+--
+-- Indexes for table `servers`
+--
+ALTER TABLE `servers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_servers_to_user_id` (`user_id`);
+
+--
+-- Indexes for table `channels`
+--
+ALTER TABLE `channels`
+  ADD PRIMARY KEY (`id`);
+
 
 --
 -- Indexes for table `users`
@@ -168,7 +228,19 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `servers`
+--
+ALTER TABLE `servers`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `channels`
+--
+ALTER TABLE `channels`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -187,6 +259,13 @@ ALTER TABLE `conversations`
 ALTER TABLE `friends`
   ADD CONSTRAINT `fk_to_friend_user_id` FOREIGN KEY (`friend_user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_to_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `servers`
+--
+ALTER TABLE `servers`
+  ADD CONSTRAINT `fk_servers_to_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
 
 --
 -- Constraints for table `messages`
