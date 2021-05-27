@@ -1,3 +1,80 @@
+
+#container {
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    display: flex;
+    background: #141414;
+  }
+  
+  .sidebar {
+    height: 100%;
+    background: #222;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 800px;
+  }
+  .sidebar-scroller {
+    height: 100%;
+    overflow: hidden auto;
+    width: 350px;
+  }
+  .sidebar-group {
+    padding: 15px;
+  }
+  .sidebar-group-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #888;
+    font-size: 12px;
+    margin-left: 14px;
+  }
+  .sidebar-btn {
+    background: transparent;
+    border: none;
+    border-radius: 3px;
+    display: block;
+    padding: 10px 14px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    color: #fff;
+  }
+  .sidebar-btn:not(:last-child) {
+    margin-bottom: 5px;
+  }
+  .sidebar-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .sidebar-btn.active {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 800px;
+  }
+  .content-scroller {
+    height: 100%;
+    overflow: hidden auto;
+    padding: 15px;
+  }
+  
+  .content h1 {
+    margin-top: 0;
+  }
+  .content p {
+    margin-bottom: 50px;
+  }
+  .content-box {
+    background: #222;
+    height: 500px;
+    margin-bottom: 15px;
+  }
+
+
+
 html, body {
     height: 100%;
 }
@@ -57,5 +134,23 @@ span.emoji {
     padding-left: 20px;
 }
 
+.conversationContent {
+   height: 250px;
+   overflow:auto;
+}
+
+.messageContent {
+    height: 650px;
+    overflow:auto;
+}
+
+.channelContent {
+    height: 350px;
+    overflow:auto;
+}
+
+.footer{
+    color: #6A6E71;
+}
   
 

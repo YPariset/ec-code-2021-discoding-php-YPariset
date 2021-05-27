@@ -13,10 +13,18 @@
 
 
 <body>
+             
 <?= $content; ?>
+    
 
 <script src="/static/lib/bootstrap-5.0.0/js/bootstrap.min.js"></script>
 <script src="/static/js/script.js"></script>
 </body>
+
+<footer>
+        <div class="align-self-center d-flex justify-content-center footer">
+            <aside>Copyright © created with love and passion by Parizoo</aside>
+        </div>
+    </footer>
 
 </html>
