@@ -40,6 +40,7 @@ if (isset($_GET['action'])) {
                 header('Location:index.php');
               else: 
                 conversationPage();
+                if ( !empty( $_POST ) ) {messageDelete( $_POST );}
               endif;
             break;
 

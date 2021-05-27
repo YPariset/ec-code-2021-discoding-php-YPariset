@@ -3,7 +3,6 @@
 <div class="container-fluid d-flex h-100 characterBackground">
     <div class="row align-self-center w-100">
         <div class="col-md-4 mx-auto auth-container">
-        <div class="auth-container">
           <a class="bi bi-arrow-left-circle-fill" href="index.php?action=login"></a>
           <h2>Inscription <span class="emoji">🕺</span></h2>
           <p class="text-muted">Welcome to Discoding</p>

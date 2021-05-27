@@ -153,4 +153,15 @@ span.emoji {
     color: #6A6E71;
 }
   
+.deleteMessage{
+    background:none; 
+    border:none; 
+    outline: none; 
+    color: red;
+
+}
+
+.delete {
+    margin-left: -600px;
+}
 

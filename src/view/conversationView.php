@@ -29,6 +29,27 @@
                                 ?>
                                 <img src="<?= $avatarUrl ?>" class="rounded-circle avatar mx-2"/>
                             </div>
+                        <?php if ($message['user_id'] == $user_id) : ?>
+                            <div class="card-body">
+                                <div class="card-title d-flex">
+                                    <div class="flex-grow-1 fw-bold">
+                                        <?= $msgUser['username'] ?>
+                                    </div>
+                                    <div class="text-muted fs-6">
+                                        <form method="POST" action="">
+                                            <?= $message['created_at'] ?>
+                                            <input type="hidden" value="<?= isset($message['id']) ? $message['id'] : '' ?>" name="id_message"/>
+                                            <button type="submit" name="delete" class="deleteMessage" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="card-text">
+                                    <?= $message['content'] ?>
+                                </div>
+                            </div>
+                        <?php else:  ?>
                             <div class="card-body">
                                 <div class="card-title d-flex">
                                     <div class="flex-grow-1 fw-bold">
@@ -42,13 +63,14 @@
                                     <?= $message['content'] ?>
                                 </div>
                             </div>
+                        <?php endif ?>
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
             <form class="d-flex mt-3" action="/index.php?action=conversation&sub_action=add_message&conversation_id=<?= $conversation_id ?>" method="post">
                     <div class="flex-grow-1">
-                        <input type="text" class="form-control" id="content" name="content"/>
+                        <input type="text" placeholder="Envoyer un message" class="form-control" id="content" name="content"/>
                     </div>
                     <div class="mx-2">
                         <button id="sendMessage" type="submit" class="btn btn-secondary">Envoyer</button>
