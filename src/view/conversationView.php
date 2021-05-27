@@ -36,7 +36,7 @@
                                         <?= $msgUser['username'] ?>
                                     </div>
                                     <div class="text-muted fs-6">
-                                        <form method="POST" action="">
+                                        <form method="POST" action="/index.php?action=conversation&sub_action=delete_message&conversation_id=<?= $conversation_id ?>">
                                             <?= $message['created_at'] ?>
                                             <input type="hidden" value="<?= isset($message['id']) ? $message['id'] : '' ?>" name="id_message"/>
                                             <button type="submit" name="delete" class="deleteMessage" aria-label="Close">

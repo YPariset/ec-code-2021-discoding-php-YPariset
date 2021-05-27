@@ -26,6 +26,7 @@ function conversationPage()
         case 'add_message':
             addMessage($user_id);
             break;
+        
     }
 }
 
