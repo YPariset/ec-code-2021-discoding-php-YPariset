@@ -20,18 +20,18 @@
             </div>
             <ul class="list-group list-group-flush mt-2">
                 <?php if(!empty($_GET['username'])):?>
-                    <?php foreach ($tests as $test): ?>
+                    <?php foreach ($users as $user): ?>
                             <li class="d-flex justify-content-between list-group-item">
                                 <div>
                                     <?php
-                                    if ($test['avatar_url']) {
-                                        $avatarUrl = $test['avatar_url'];
+                                    if ($user['avatar_url']) {
+                                        $avatarUrl = $user['avatar_url'];
                                     } else {
                                         $avatarUrl = "/static/lib/bootstrap-icons-1.5.0/person-fill.svg";
                                     }
                                     ?>
                                     <img src="<?= $avatarUrl ?>" class="rounded-circle avatar-small mx-2"/>
-                                    <?= $test['username']; ?>
+                                    <?= $user['username']; ?>
                                 </div>
 
                                 <div class="align-self-center">
