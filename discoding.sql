@@ -111,45 +111,71 @@ INSERT INTO `messages` (`id`, `conversation_id`, `user_id`, `content`, `created_
 --
 
 CREATE TABLE `servers` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `user_id` int NOT NULL,
-  `created_at` datetime NOT NULL,
-  `avatar_url` varchar(500) DEFAULT NULL
+  `user_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `avatar_url` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
 -- Dumping data for table `servers`
 --
 
-INSERT INTO `servers` (`id`, `name`, `user_id`, `created_at`, `avatar_url`) VALUES
-(1, 'Coding Factory', 1, '2021-05-26 12:50:09', 'https://i.pinimg.com/originals/92/57/8a/92578adbf3632f085bffdc00c0eccb47.jpg');
+INSERT INTO `servers` (`id`, `name`, `user_id`, `created_at`, `avatar_url`, `url`) VALUES
+(1, 'Coding factory', 1, '2021-05-28 16:27:51', 'https://studyadv.s3.amazonaws.com/production/schools/images/000/017/762/original/ref_codingfactory_top.png', 'index.php&action=server&server=Coding factory##a8f97db81c'),
+(2, 'What the Fabrik', 1, '2021-05-28 16:28:17', '/https://avatarfiles.alphacoders.com/191/191037.jpg', 'index.php&action=server&server=What the Fabrik##39c6fd80ef'),
+(3, 'Root me', 1, '2021-05-28 16:28:32', 'https://www.root-me.org/IMG/auton230163.png?1609337186', 'index.php&action=server&server=Root me##663d786e67');
 
 -- --------------------------------------------------------
 
--- --------------------------------------------------------
 
 --
 -- Table structure for table `channels`
 --
 
 CREATE TABLE `channels` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `server_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
 -- Dumping data for table `channels`
 --
 
-INSERT INTO `channels` (`id`, `name`, `created_at`) VALUES
-(1, 'General', '2021-05-26 12:50:09'),
-(2, 'Random', '2021-05-26 12:50:09'),
-(3, 'Music', '2021-05-26 12:50:09'),
-(4, 'Games', '2021-05-26 12:50:09'),
-(5, 'Help', '2021-05-26 12:50:09');
+INSERT INTO `channels` (`id`, `name`, `created_at`, `server_id`) VALUES
+(1, 'General', '2021-05-26 12:50:09', 2),
+(2, 'Random', '2021-05-26 12:50:09', 2),
+(3, 'Music', '2021-05-26 12:50:09', 3),
+(4, 'Games', '2021-05-26 12:50:09', 3),
+(5, 'Help', '2021-05-26 12:50:09', 4);
 
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `message_channel`
+--
+
+CREATE TABLE `message_channel` (
+  `id` int(11) NOT NULL,
+  `channel_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `message_channel`
+--
+
+INSERT INTO `message_channel` (`id`, `channel_id`, `user_id`, `content`, `created_at`) VALUES
+(1, 0, 1, 'Welcome on the server coding , enjoy!', '2021-05-28 13:15:45');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
@@ -175,8 +201,51 @@ INSERT INTO `users` (`id`, `email`, `username`, `password`, `avatar_url`) VALUES
 (5, 'kirua@gmail.com', 'kirua#3314', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'https://i1.sndcdn.com/artworks-000127324910-olj3av-t500x500.jpg');
 
 --
+-- Structure de la table `user_server`
+--
+
+CREATE TABLE `user_server` (
+  `id_server` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `user_server`
+--
+
+INSERT INTO `user_server` (`id_server`, `id_user`) VALUES
+(1, 1),
+(2, 1),
+(3, 1);
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Index pour la table `message_channel`
+--
+ALTER TABLE `message_channel`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `channel_id` (`channel_id`),
+  ADD KEY `user_id` (`user_id`);
+
+
+--
+-- Index pour la table `servers`
+--
+ALTER TABLE `servers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+
+--
+-- Index pour la table `user_server`
+--
+ALTER TABLE `user_server`
+  ADD PRIMARY KEY (`id_server`),
+  ADD KEY `id_user` (`id_user`);
+
 
 --
 -- Indexes for table `conversations`
@@ -202,13 +271,6 @@ ALTER TABLE `messages`
   ADD KEY `fk_messages_to_conversation_id` (`conversation_id`),
   ADD KEY `fk_messages_to_user_id` (`user_id`);
 
-
---
--- Indexes for table `servers`
---
-ALTER TABLE `servers`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_servers_to_user_id` (`user_id`);
 
 --
 -- Indexes for table `channels`
@@ -262,6 +324,14 @@ ALTER TABLE `servers`
 --
 ALTER TABLE `channels`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+  --
+-- AUTO_INCREMENT pour la table `user_server`
+--
+ALTER TABLE `user_server`
+  MODIFY `id_server` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+
 
 --
 -- Constraints for dumped tables

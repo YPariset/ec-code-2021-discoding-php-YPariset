@@ -10,6 +10,8 @@ require_once('controller/friendController.php');
 require_once('controller/loginController.php');
 require_once('controller/contactController.php');
 require_once('controller/signupController.php');
+require_once('controller/serverController.php');
+require_once('controller/createServerController.php');
 
 $user_id = isset( $_SESSION['user_id'] ) ? $_SESSION['user_id'] : false;
 
@@ -54,6 +56,14 @@ if (isset($_GET['action'])) {
 
         case 'contact':
             sendMail();
+            break;
+
+        case 'create_server':
+            createServer();
+            break;
+
+        case 'server':
+            serverPage();
             break;
     }
 } else {

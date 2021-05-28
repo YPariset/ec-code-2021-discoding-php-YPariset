@@ -10,6 +10,9 @@
             <a href="/index.php?action=contact">
                 <i class="bi-envelope-fill mx-2"></i> Contact
             </a>
+            <a href="/index.php?action=create_server">
+                <i class="bi-hdd-fill mx-2"></i>Servers
+            </a>
         </li>
     </ul>
     <ul class="list-group border-0 conversationContent ">
@@ -31,29 +34,22 @@
             </li>
         <?php endforeach; ?>
     </ul>
-    <div id="container">
-        <aside class="sidebar">
-            <div class="sidebar-scroller channelContent">
-                <section class="sidebar-group">
-                    <p class="sidebar-group-title">Group 1</p>
-                    <button class="sidebar-btn active">Button 1</button>
-                    <button class="sidebar-btn">Button 2</button>
-                </section>
-                <section class="sidebar-group">
-                    <p class="sidebar-group-title">Group 2</p>
-                    <button class="sidebar-btn">Button 3</button>
-                    <button class="sidebar-btn">Button 4</button>
-                    <button class="sidebar-btn">Button 5</button>
-                    <button class="sidebar-btn">Button 6</button>
-                </section>
-                <section class="sidebar-group">
-                    <p class="sidebar-group-title">Group 3</p>
-                    <button class="sidebar-btn">Button 7</button>
-                    <button class="sidebar-btn">Button 8</button>
-                </section>
-            </div>
-        </aside>
-    </div>
+    <br>
+    <ul class="list-group border-0 serverContent">
+        <li class="list-group-item border-0">
+                    <h5>My Servers</h5>
+                    <hr>
+        </li>
+    <?php foreach ($list as $server): ?>
+         
+            <li class="list-group-item border-0">
+                 <a href="index.php?action=server&server=<?= $server['url'] ?>">
+                    <img src="<?= $server['avatar_url'] ?>" class="rounded-circle avatar-small mx-2"/>
+                    <?= $server['name']; ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
 </div>
 
 <?php $conversation_list_content = ob_get_clean(); ?>

@@ -157,7 +157,7 @@ public static function createNewServer($name, $id_user){
 
     public static function getAllServeurByUser($idUser){
         $db = init_db();
-        $req  = $db->prepare( "SELECT * FROM servers as s, user_server as us, user as u
+        $req  = $db->prepare( "SELECT * FROM servers as s, user_server as us, users as u
                                 WHERE  s.id = us.id_server
                                 AND u.id = us.id_user
                                 AND u.id = ?");

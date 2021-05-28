@@ -139,6 +139,11 @@ span.emoji {
    overflow:auto;
 }
 
+.serverContent {
+  height: 440px;
+  overflow:auto;
+}
+
 .messageContent {
     height: 650px;
     overflow:auto;

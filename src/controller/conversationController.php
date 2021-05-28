@@ -2,6 +2,7 @@
 
 require_once('model/conversation.php');
 require_once('model/message.php');
+require_once('model/server.php');
 
 function conversationPage()
 {
@@ -61,6 +62,7 @@ function conversationListPartial($user_id)
 {
 
     $conversations = Conversation::getAllConversationsForUser($user_id);
+    $list = Server::getAllServeurByUser($user_id);
     $conversation_list_content = '';
     require('view/conversationListViewPartial.php');
     return $conversation_list_content;
