@@ -12,6 +12,7 @@
                 </div>
                 <div class="col-md-6 align-self-center d-flex justify-content-end">
                     <form class="col-md-6 align-self-center d-flex justify-content-end" method="get" action="/index.php?action=friend">
+                        <input type="hidden" name="action" value="friend" /> 
                         <input type="search" id="search" name="username" class="form-control"
                         placeholder="Search">
                         <button id="sendMessage" type="submit" class="btn btn-secondary">Send</button>
@@ -35,7 +36,7 @@
                                 </div>
 
                                 <div class="align-self-center">
-                                    <a href="/index.php?action=conversation&sub_action=start_with_user&interlocutor_id=<?= $friend['id'] ?>">Message</a>
+                                    <a href="/index.php?action=conversation&sub_action=start_with_user&interlocutor_id=<?= $user['id'] ?>">Message</a>
                                 </div>
                             </li>
                         <?php endforeach; ?>
