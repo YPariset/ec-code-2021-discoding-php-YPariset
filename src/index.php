@@ -59,11 +59,19 @@ if (isset($_GET['action'])) {
             break;
 
         case 'create_server':
-            createServer();
+            if(empty($user_id)): 
+                header('Location:index.php');
+              else: 
+                createServer();
+              endif;
             break;
 
         case 'server':
-            serverPage();
+            if(empty($user_id)): 
+                header('Location:index.php');
+              else: 
+                serverPage();
+              endif;
             break;
     }
 } else {
