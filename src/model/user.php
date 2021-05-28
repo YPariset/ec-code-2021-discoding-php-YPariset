@@ -201,13 +201,10 @@ class User
 
         $req = $db->prepare("SELECT * FROM users WHERE username = ?");
         $req->execute(array($username));
-        $row = $req->fetch();
-        if($row['username'] != $username){
-          return false;
-        }else{
-          return $row;
-        }
+        
         $db = null;
+
+        return $req->fetch();
     }
 
 

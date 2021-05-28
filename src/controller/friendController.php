@@ -32,15 +32,23 @@ function addFriend($user_id)
 {
     $message = '';
     $username = $_POST['username'] ?? '';
-    if ($username != '') {
-        $newFriend = User::findUserWithUsername($username);
-        if (User::isAlreadyFriend($user_id, $newFriend['id'])) {
-            $message = 'Déjà ami avec ' . $newFriend['username'] . ' !';
-        } else {
-            User::addFriend($user_id, $newFriend['id']);
-            $message = 'Ami ' . $newFriend['username'] . ' ajouté !';
-        }
-    }
+    if (!empty($username)) :
+            $newFriend = User::findUserWithUsername($username);
+            if($newFriend != false):
+        
+                if (User::isAlreadyFriend($user_id, $newFriend['id'])) :
+                    $message = 'Déjà ami avec ' . $newFriend['username'] . ' !';
+                else :
+                    User::addFriend($user_id, $newFriend['id']);
+                    $message = 'Ami ' . $newFriend['username'] . ' ajouté !';
+                endif;
+            else:
+                $message = 'L\'utilisateur n\'a pas été trouvé !';
+            endif;
+    endif;
+    
+ 
+     
 
     $conversation_list_partial = conversationListPartial($user_id);
     require('view/friendAddView.php');

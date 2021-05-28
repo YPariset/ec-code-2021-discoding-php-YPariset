@@ -99,9 +99,10 @@ INSERT INTO `messages` (`id`, `conversation_id`, `user_id`, `content`, `created_
 (7, 1, 1, 'Envie de me jeter du balcon', '2021-05-28 01:58:10'),
 (8, 1, 1, 'Tu penses que je vole Robin ???', '2021-05-28 01:58:16'),
 (9, 1, 1, 'cest une véritable boucherie', '2021-05-28 02:00:26'),
-(10, 5, 1, 'Yo man', '2021-05-28 02:00:48'),
+(10, 2, 1, 'Yo man', '2021-05-28 02:00:48'),
 (11, 3, 1, 'Yo', '2021-05-28 02:39:00'),
-(12, 4, 1, 'Yo', '2021-05-28 02:39:10');
+(12, 4, 1, 'Yo', '2021-05-28 02:39:10'),
+(13, 1, 2, 'ferme là et bosse', '2021-05-28 03:29:26');
 
 -- --------------------------------------------------------
 
@@ -242,7 +243,7 @@ ALTER TABLE `friends`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
