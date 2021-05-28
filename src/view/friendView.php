@@ -11,10 +11,10 @@
                     <a href="/index.php?action=friend&sub_action=add_friend" class="btn btn-success">Add a Friend</a>
                 </div>
                 <div class="col-md-6 align-self-center d-flex justify-content-end">
-                    <form method="get" action="">
+                    <form class="col-md-6 align-self-center d-flex justify-content-end" method="get" action="/index.php?action=friend">
                         <input type="search" id="search" name="username" class="form-control"
-                        placeholder="Rechercher">
-                        <button id="sendMessage" type="submit" class="btn btn-secondary">Envoyer</button>
+                        placeholder="Search">
+                        <button id="sendMessage" type="submit" class="btn btn-secondary">Send</button>
                     </form>
                 </div>
             </div>

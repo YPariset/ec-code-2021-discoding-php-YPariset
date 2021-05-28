@@ -128,4 +128,18 @@ class Message
         $db = null;
     }
 
+    public static function filterMessages($conversation, $search)
+    {
+        // Open database connection
+        $db = init_db();
+        $sql = 'SELECT m.* FROM messages AS m, conversations AS c WHERE m.conversation_id = c.id AND c.id = ? AND content LIKE ? ';
+  
+  
+        $req = $db->prepare($sql);
+        $req->execute(array($conversation, '%'.$search.'%'));
+        // Close database connection
+        $db = null;
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

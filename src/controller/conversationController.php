@@ -50,6 +50,10 @@ function conversationDetail($user_id)
     $user = User::getUserById($user_id);
     $interlocutor = User::getUserById($conversation['interlocutor_id']);
     $conversation_list_partial = conversationListPartial($user_id);
+
+    $search = isset( $_GET['content'] ) ? $_GET['content'] : null;
+    $messagesFiltered = Message::filterMessages($conversation_id, $search);
+    
     require('view/conversationView.php');
 }
 
