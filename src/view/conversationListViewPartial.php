@@ -1,6 +1,7 @@
 <?php ob_start(); ?>
 
 <div class="col-sm-6 col-md-3 friends-list">
+    <!-- options menu -->
     <ul class="list-group mt-3 mb-3">
         <li class="list-group-item">
             <a class="bi bi-power mx-2" href="index.php?action=logout"></a>
@@ -15,6 +16,7 @@
             </a>
         </li>
     </ul>
+    <!-- List of conversations -->
     <ul class="list-group border-0 conversationContent ">
         <?php foreach ($conversations as $conv): ?>
             <li class="list-group-item border-0">
@@ -35,6 +37,7 @@
         <?php endforeach; ?>
     </ul>
     <br>
+    <!-- list of servers -->
     <ul class="list-group border-0 serverContent">
         <li class="list-group-item border-0">
                     <h5>My Servers</h5>

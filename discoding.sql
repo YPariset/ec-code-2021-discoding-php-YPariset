@@ -125,7 +125,7 @@ CREATE TABLE `servers` (
 
 INSERT INTO `servers` (`id`, `name`, `user_id`, `created_at`, `avatar_url`, `url`) VALUES
 (1, 'Coding factory', 1, '2021-05-28 16:27:51', 'https://studyadv.s3.amazonaws.com/production/schools/images/000/017/762/original/ref_codingfactory_top.png', 'index.php&action=server&server=Coding factory##a8f97db81c'),
-(2, 'What the Fabrik', 1, '2021-05-28 16:28:17', '/https://avatarfiles.alphacoders.com/191/191037.jpg', 'index.php&action=server&server=What the Fabrik##39c6fd80ef'),
+(2, 'What the Fabrik', 1, '2021-05-28 16:28:17', 'https://avatarfiles.alphacoders.com/191/191037.jpg', 'index.php&action=server&server=What the Fabrik##39c6fd80ef'),
 (3, 'Root me', 1, '2021-05-28 16:28:32', 'https://www.root-me.org/IMG/auton230163.png?1609337186', 'index.php&action=server&server=Root me##663d786e67');
 
 -- --------------------------------------------------------

@@ -20,6 +20,7 @@
                         <button id="sendMessage" type="submit" class="btn btn-secondary">Send</button>
                         </form>
                     </div>
+                    <!-- Search result of messages -->
                     <?php if(!empty($_GET['content'])):?>
                         <?php foreach ($messagesFiltered as $messageFiltered):
                             if ($messageFiltered['user_id'] == $user_id) {
@@ -78,6 +79,7 @@
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>
+                        <!-- result of all messages -->
                         <?php foreach ($messages as $message):
                             if ($message['user_id'] == $user_id) {
                                 $msgUser = $user;

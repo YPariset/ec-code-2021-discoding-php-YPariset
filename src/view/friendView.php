@@ -20,6 +20,7 @@
                 </div>
             </div>
             <ul class="list-group list-group-flush mt-2">
+                <!-- Search result of friends -->
                 <?php if(!empty($_GET['username'])):?>
                     <?php foreach ($users as $user): ?>
                             <li class="d-flex justify-content-between list-group-item">
@@ -41,6 +42,7 @@
                             </li>
                         <?php endforeach; ?>
                     <?php else: ?>
+                        <!-- result of all friends -->
                         <?php foreach ($friends as $friend): ?>
                             <li class="d-flex justify-content-between list-group-item">
                                 <div>

@@ -4,6 +4,11 @@
  * ----- INIT DATABASE CONNECTION -----
  *************************************/
 
+/**
+ * init_db
+ *
+ * @return void
+ */
 function init_db()
 {
     try {

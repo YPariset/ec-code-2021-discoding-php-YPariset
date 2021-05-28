@@ -87,7 +87,13 @@ class Message
     {
         $this->created_at = $created_at;
     }
-
+    
+    /**
+     * getMessagesForConversationId
+     *
+     * @param  mixed $conversation_id
+     * @return array
+     */
     public static function getMessagesForConversationId($conversation_id): array
     {
         $db = init_db();
@@ -100,7 +106,13 @@ class Message
 
         return $req->fetchAll();
     }
-
+    
+    /**
+     * createMessage
+     *
+     * @param  mixed $message
+     * @return Message
+     */
     public static function createMessage(Message $message): Message
     {
         $db = init_db();
@@ -119,7 +131,13 @@ class Message
 
         return $message;
     }
-
+    
+    /**
+     * deleteMessage
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public static function deleteMessage($id)
     {
         $db = init_db();
@@ -127,7 +145,14 @@ class Message
         $req->execute(array($id));
         $db = null;
     }
-
+    
+    /**
+     * filterMessages
+     *
+     * @param  mixed $conversation
+     * @param  mixed $search
+     * @return void
+     */
     public static function filterMessages($conversation, $search)
     {
         // Open database connection

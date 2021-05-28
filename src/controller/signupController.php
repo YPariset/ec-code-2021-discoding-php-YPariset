@@ -6,6 +6,11 @@ require_once( 'model/user.php' );
 * ----- LOAD SIGNUP PAGE -----
 ****************************/
 
+/**
+ * signupPage
+ *
+ * @return void
+ */
 function signupPage() {
 
   $user     = new stdClass();
@@ -23,6 +28,12 @@ function signupPage() {
 * ----- SIGNUP FUNCTION -----
 ***************************/
 
+/**
+ * signup
+ *
+ * @param  mixed $post
+ * @return void
+ */
 function signup($post) {
   $data                   = new stdClass();
   $data->email            = $post['email'];

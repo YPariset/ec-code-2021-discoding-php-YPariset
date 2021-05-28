@@ -1,6 +1,11 @@
 <?php 
 
 //function not sending mail because no mail server aren't configurated
+/**
+ * sendMail
+ *
+ * @return void
+ */
 function sendMail(){
 
     if(!empty($_POST)){

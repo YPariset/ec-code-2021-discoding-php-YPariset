@@ -8,6 +8,11 @@ require_once('model/user.php');
  * ----- LOAD LOGIN PAGE -----
  ****************************/
 
+/**
+ * loginPage
+ *
+ * @return void
+ */
 function loginPage()
 {
     $user = new stdClass();
@@ -19,6 +24,12 @@ function loginPage()
  * ----- LOGIN FUNCTION -----
  ***************************/
 
+/**
+ * login
+ *
+ * @param  mixed $post
+ * @return void
+ */
 function login($post)
 {
 
@@ -42,6 +53,11 @@ function login($post)
  * ----- LOGOUT FUNCTION -----
  ****************************/
 
+/**
+ * logout
+ *
+ * @return void
+ */
 function logout()
 {
     $_SESSION = array();

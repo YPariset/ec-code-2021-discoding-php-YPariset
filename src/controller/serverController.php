@@ -1,5 +1,10 @@
 <?php 
 
+/**
+ * serverPage
+ *
+ * @return void
+ */
 function serverPage(){
 
     

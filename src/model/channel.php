@@ -1,5 +1,8 @@
 <?php 
 require_once('database.php');
+/**
+ * Channel
+ */
 class Channel{
 
     private $id;
@@ -7,7 +10,13 @@ class Channel{
     private $userId;
     private $content;
     private $createdAt;
-
+    
+    /**
+     * __construct
+     *
+     * @param  mixed $channel
+     * @return void
+     */
     public function __construct( $channel = null ) {
           $this->setId( isset( $channel->id ) ? $channel->id : null );
           $this->setUserId( isset( $channel->user_id ) ? $channel->user_id : null );
@@ -83,6 +92,13 @@ class Channel{
         $this->name = $name;
     }
 
+/**
+ * createChannel
+ *
+ * @param  mixed $name
+ * @param  mixed $number
+ * @return void
+ */
 public static function createChannel($name, $number){
     $db = init_db();
     $req  = $db->prepare( "INSERT INTO channels (name, server_id) VALUES (?, ?)" );

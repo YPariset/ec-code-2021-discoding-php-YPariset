@@ -3,6 +3,11 @@
 require_once('model/channel.php');
 require_once('model/messageChannel.php');
 
+/**
+ * createServer
+ *
+ * @return void
+ */
 function createServer(){
     $name_server = isset($_POST['server_name']) ? $_POST['server_name'] : '';
     $rooms = isset($_POST['number_rooms']) ? $_POST['number_rooms'] : '';

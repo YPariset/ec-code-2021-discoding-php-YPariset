@@ -9,7 +9,13 @@ class User
     protected $username;
     protected $password;
     protected $avatar_url;
-
+    
+    /**
+     * __construct
+     *
+     * @param  mixed $user
+     * @return void
+     */
     public function __construct( $user = null ) {
 
         if( $user != null ):
@@ -105,7 +111,12 @@ class User
   /***********************************
   * -------- CREATE NEW USER ---------
   ************************************/
-
+  
+  /**
+   * createUser
+   *
+   * @return void
+   */
   public function createUser() {
 
     // Open database connection
@@ -144,7 +155,13 @@ class User
     /**************************************
      * -------- GET USER DATA BY ID --------
      ***************************************/
-
+    
+    /**
+     * getUserById
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public static function getUserById($id)
     {
         // Open database connection
@@ -162,7 +179,14 @@ class User
     /***************************************
      * ------- GET USER DATA BY USERNAME -------
      ****************************************/
-
+    
+    /**
+     * getUserByCredentials
+     *
+     * @param  mixed $email
+     * @param  mixed $password
+     * @return void
+     */
     public static function getUserByCredentials($email, $password)
     {
         // Open database connection
@@ -179,7 +203,13 @@ class User
 
         return $req->fetch();
     }
-
+    
+    /**
+     * getFriendsForUser
+     *
+     * @param  mixed $user_id
+     * @return array
+     */
     public static function getFriendsForUser($user_id): array
     {
         // Open database connection
@@ -193,7 +223,13 @@ class User
 
         return $req->fetchAll();
     }
-
+    
+    /**
+     * findUserWithUsername
+     *
+     * @param  mixed $username
+     * @return void
+     */
     public static function findUserWithUsername($username)
     {
         // Open database connection
@@ -207,7 +243,14 @@ class User
         return $req->fetch();
     }
 
-
+    
+    /**
+     * isAlreadyFriend
+     *
+     * @param  mixed $user_id
+     * @param  mixed $friend_id
+     * @return void
+     */
     public static function isAlreadyFriend($user_id, $friend_id)
     {
         // Open database connection
@@ -228,7 +271,13 @@ class User
 
         return $isAlreadyFriend;
     }
-
+    
+    /**
+     * filterUsers
+     *
+     * @param  mixed $username
+     * @return array
+     */
     public static function filterUsers($username = null) : array
   {
       // Open database connection
@@ -255,7 +304,14 @@ class User
       $db = null;
       return $req->fetchAll(PDO::FETCH_ASSOC);
   }
-
+    
+    /**
+     * addFriend
+     *
+     * @param  mixed $user_id
+     * @param  mixed $friend_id
+     * @return void
+     */
     public static function addFriend($user_id, $friend_id)
     {
         // Open database connection

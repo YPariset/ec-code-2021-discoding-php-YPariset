@@ -8,7 +8,13 @@ class Server{
     private $name;
     private $id_user;
     private $avatar_url;
-
+    
+    /**
+     * __construct
+     *
+     * @param  mixed $server
+     * @return void
+     */
     public function __construct( $server = null ) {
         $this->setId( isset( $server->id ) ? $server->id : null );
         $this->setUrl( isset( $server->url ) ? $server->url : null );
@@ -115,6 +121,13 @@ class Server{
   
 
 /******************************************************/
+/**
+ * createNewServer
+ *
+ * @param  mixed $name
+ * @param  mixed $id_user
+ * @return void
+ */
 public static function createNewServer($name, $id_user){
 
         $db = init_db();
@@ -133,7 +146,14 @@ public static function createNewServer($name, $id_user){
             $datas = $req->execute(array($name, $id_user, $avatar, $url));
         endif;
         }
-
+        
+        /**
+         * createUserServer
+         *
+         * @param  mixed $name
+         * @param  mixed $id_user
+         * @return void
+         */
         public static function createUserServer($name, $id_user){
                 $db = init_db();
                 $req  = $db->prepare( "SELECT id FROM servers WHERE name = ?" );
@@ -145,7 +165,13 @@ public static function createNewServer($name, $id_user){
                 $req  = $db->prepare( "INSERT INTO user_server (id_server, id_user) VALUES (?, ?)" );
                 $datas = $req->execute(array($row, $id_user));
             }
-
+    
+    /**
+     * displayServeur
+     *
+     * @param  mixed $idServeur
+     * @return void
+     */
     public static function displayServeur($idServeur){
         $db = init_db();
         $req  = $db->prepare( "SELECT c.name as rooms, s.name as nom_server, s.user_id as admin, s.url, s.avatar_url
@@ -154,7 +180,13 @@ public static function createNewServer($name, $id_user){
                                 AND  s.id = ? " );
             $req->execute( array($idServeur));
     }
-
+    
+    /**
+     * getAllServeurByUser
+     *
+     * @param  mixed $idUser
+     * @return void
+     */
     public static function getAllServeurByUser($idUser){
         $db = init_db();
         $req  = $db->prepare( "SELECT * FROM servers as s, user_server as us, users as u
