@@ -8,7 +8,15 @@
         <div class="col-sm-6 col-md-9 mt-2">
             <div class="messageContent">
                 <div class="row m-auto">
-                    <h3><?= $interlocutor['username'] ?></h3>
+                    <div class="col-md-6">
+                        <h3><?= $interlocutor['username'] ?></h3>
+                    </div>
+                    <div class="col-md-6 align-self-center d-flex justify-content-end">
+                    
+                        <input type="search" id="search" name="title" class="form-control"
+                        placeholder="Rechercher">
+                        <button id="sendMessage" type="submit" class="btn btn-secondary">Envoyer</button>
+                    </div>
 
                     <?php foreach ($messages as $message):
                         if ($message['user_id'] == $user_id) {

@@ -38,13 +38,13 @@
               </div>
             </div>
           </form>
-        </div>
-        <span class="error-msg alert-danger d-flex justify-content-center">
+          <span class="error-msg alert-danger d-flex justify-content-center">
               <?= isset( $error_msg ) ? $error_msg : null; ?>
             </span>
             <span class="success-msg alert-success d-flex justify-content-center">
               <?= isset($success_msg) ? $success_msg : null; ?>
             </span>
+        </div>
     </div>
 </div>
 

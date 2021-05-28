@@ -35,9 +35,9 @@ function signup($post) {
 
   # Check if passwords are matching
   if( $data->email != null || $data->password != null || $password_confirm != null|| $data->username != null){
-    // si le confirm est egal au password user 
+    // if confirm password is equal to password user 
     if( $user->getPassword() == $password_confirm){
-        // si adresse dispo
+        // if adress available
         if($user->createUser()){
           $success_msg ="You will receive an email to activate your account";
         }else{

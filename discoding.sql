@@ -41,7 +41,9 @@ CREATE TABLE `conversations` (
 
 INSERT INTO `conversations` (`id`, `user1_id`, `user2_id`, `updated_at`) VALUES
 (1, 1, 2, '2021-05-11 08:42:21'),
-(5, 3, 1, '2021-05-11 13:31:20');
+(2, 3, 1, '2021-05-11 13:31:20'),
+(3, 1, 4, '2021-05-28 02:39:00'),
+(4, 1, 5, '2021-05-28 02:39:10');
 
 -- --------------------------------------------------------
 
@@ -61,7 +63,13 @@ CREATE TABLE `friends` (
 
 INSERT INTO `friends` (`id`, `user_id`, `friend_user_id`) VALUES
 (1, 1, 2),
-(4, 3, 1);
+(2, 3, 1),
+(3, 1, 3),
+(4, 2, 1),
+(5, 3, 2),
+(6, 2, 3),
+(7, 1, 4),
+(8, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -83,7 +91,17 @@ CREATE TABLE `messages` (
 
 INSERT INTO `messages` (`id`, `conversation_id`, `user_id`, `content`, `created_at`) VALUES
 (1, 1, 1, 'Hello there !', '2021-05-11 12:50:09'),
-(2, 1, 2, 'Hi back !', '2021-05-11 12:51:09');
+(2, 1, 2, 'Hi back !', '2021-05-11 12:51:09'),
+(3, 1, 1, 'Onizuka', '2021-05-28 01:57:19'),
+(4, 1, 1, 'sérieux', '2021-05-28 01:57:26'),
+(5, 1, 1, 'une semaine de cours php', '2021-05-28 01:57:47'),
+(6, 1, 1, 'et tu nous sors ça coeff 18 ', '2021-05-28 01:57:55'),
+(7, 1, 1, 'Envie de me jeter du balcon', '2021-05-28 01:58:10'),
+(8, 1, 1, 'Tu penses que je vole Robin ???', '2021-05-28 01:58:16'),
+(9, 1, 1, 'cest une véritable boucherie', '2021-05-28 02:00:26'),
+(10, 5, 1, 'Yo man', '2021-05-28 02:00:48'),
+(11, 3, 1, 'Yo', '2021-05-28 02:39:00'),
+(12, 4, 1, 'Yo', '2021-05-28 02:39:10');
 
 -- --------------------------------------------------------
 
@@ -151,7 +169,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `avatar_url`) VALUES
 (1, 'coding@factory.fr', 'coding#8136', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'https://media-exp1.licdn.com/dms/image/C560BAQFveTMznUt80w/company-logo_200_200/0/1606411224030?e=2159024400&v=beta&t=Q_n0Ieldw9WSqZs5sNwqS4cfTKRJW1nmud2xhjRrgZM'),
 (2, 'robin@factory.fr', 'robin#5562', '287782ef42356ef3d6551590f1ef0117b71d876df0f9b3eb58d088864770c74c', 'https://i.pinimg.com/originals/92/57/8a/92578adbf3632f085bffdc00c0eccb47.jpg'),
-(3, 'bob@bob.com', 'bob#3651', '81b637d8fcd2c6da6359e6963113a1170de795e4b725b84d1e0b4cfd9ec58ce9', 'https://cdn-europe1.lanmedia.fr/var/europe1/storage/images/europe1/culture/bob-marley-toujours-un-bon-vendeur-316346/6685272-1-fre-FR/Bob-Marley-toujours-un-bon-vendeur.jpg');
+(3, 'bob@bob.com', 'bob#3651', '81b637d8fcd2c6da6359e6963113a1170de795e4b725b84d1e0b4cfd9ec58ce9', 'https://cdn-europe1.lanmedia.fr/var/europe1/storage/images/europe1/culture/bob-marley-toujours-un-bon-vendeur-316346/6685272-1-fre-FR/Bob-Marley-toujours-un-bon-vendeur.jpg'),
+(4, 'luffy@gmail.com', 'luffy#8612', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'http://images3.wikia.nocookie.net/__cb20121231203634/onepiece/es/images/6/61/Estatua_de_cera_de_Luffy.png'),
+(5, 'kirua@gmail.com', 'kirua#3314', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'https://i1.sndcdn.com/artworks-000127324910-olj3av-t500x500.jpg');
 
 --
 -- Indexes for dumped tables
@@ -210,25 +230,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `conversations`
 --
 ALTER TABLE `conversations`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `servers`
@@ -266,13 +286,6 @@ ALTER TABLE `friends`
 ALTER TABLE `servers`
   ADD CONSTRAINT `fk_servers_to_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
   
-
---
--- Constraints for table `messages`
---
-ALTER TABLE `messages`
-  ADD CONSTRAINT `fk_messages_to_conversation_id` FOREIGN KEY (`conversation_id`) REFERENCES `conversations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_messages_to_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

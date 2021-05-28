@@ -11,10 +11,6 @@
                 <i class="bi-envelope-fill mx-2"></i> Contact
             </a>
         </li>
-        <li class="list-group-item">
-        <input type="search" id="search" name="title" class="form-control"
-                       placeholder="Rechercher">
-        </li>
     </ul>
     <ul class="list-group border-0 conversationContent ">
         <?php foreach ($conversations as $conv): ?>
